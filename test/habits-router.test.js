@@ -5,6 +5,9 @@ const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 const Habit = require('../lib/models/Habit');
 
+jest.mock('../lib/middleware/ensure-auth.js');
+
+
 describe('habit routes', () => {
 
     beforeAll(() => {
@@ -30,7 +33,7 @@ describe('habit routes', () => {
                     _id: expect.any(String),
                     habit: 'test your stuff', 
                     description: 'aaaaaa',
-                    user: 'test user',
+                    user: '1234',
                     updatedAt: expect.any(String),
                     createdAt: expect.any(String),
                     __v: 0
@@ -44,7 +47,7 @@ describe('habit routes', () => {
         const habit = await Habit.create({
             habit: 'do some stuff',
             description: 'aaaaaa',
-            user: 'test user',
+            user: '1234',
             __v: 0
         });
 
@@ -62,7 +65,7 @@ describe('habit routes', () => {
         const habit = await Habit.create({
             habit: 'do some stuff',
             description: 'aaaaaa',
-            user: 'test user',
+            user: '1234',
             __v: 0
         });
 
@@ -79,14 +82,14 @@ describe('habit routes', () => {
         const habit = await Habit.create({
             habit: 'do some stuff',
             description: 'aaaaaa',
-            user: 'test user',
+            user: '1234',
             __v: 0
         });
 
         const newHabit = {
             habit: 'do some stuff',
             description: 'OHO',
-            user: 'test user',
+            user: '1234',
             __v: 0
         };
 
@@ -98,7 +101,7 @@ describe('habit routes', () => {
                     _id: expect.any(String),
                     habit: 'do some stuff',
                     description: 'OHO',
-                    user: 'test user',
+                    user: '1234',
                     updatedAt: expect.any(String),
                     createdAt: expect.any(String),
                     __v: 0
@@ -111,7 +114,7 @@ describe('habit routes', () => {
         const habit = await Habit.create({
             habit: 'do some stuff',
             description: 'aaaaaa',
-            user: 'test user',
+            user: '1234',
             __v: 0
         });
 
@@ -120,14 +123,14 @@ describe('habit routes', () => {
             .send({ 
                 habit: 'be able to replace a habit',
                 description: 'replace',
-                user: 'test user',
+                user: '1234',
                 __v: 0 })
             .then(res => {
                 expect(res.body).toEqual({ 
                     _id: expect.any(String),
                     habit: 'be able to replace a habit', 
                     description: 'replace',
-                    user: 'test user',
+                    user: '1234',
                     updatedAt: expect.any(String),
                     createdAt: expect.any(String),
                     __v: 0 });
@@ -139,7 +142,7 @@ describe('habit routes', () => {
         const habit = await Habit.create({
             habit: 'do some stuff',
             description: 'aaaaaa',
-            user: 'test user',
+            user: '1234',
             __v: 0
         });
 
@@ -150,7 +153,7 @@ describe('habit routes', () => {
                     _id: expect.any(String),
                     habit: 'do some stuff',
                     description: 'aaaaaa',
-                    user: 'test user',
+                    user: '1234',
                     updatedAt: expect.any(String),
                     createdAt: expect.any(String),
                     __v: 0 });
